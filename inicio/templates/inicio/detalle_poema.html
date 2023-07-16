@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Poema</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Detalles del poema: {{poema.titulo}}
+{% endblock h1_header %}
+
+{% block h2_header %}
+{% endblock h2_header %}
+
+{% block contenido %}
+<li>Autor: {{poema.autor}}</li>
+<li>Fecha de Publicacion: {{poema.fecha_publicacion}}</li>
+{% if poema.portada %}
+    <li><img src={{poema.portada.url}} alt="" height='200px'></li>
+{% else %}
+    <li>Portada: No tiene</li>
+{% endif %}
+{% endblock contenido %}

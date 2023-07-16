@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Poemas</title>
+{% endblock title_head %}
+
+
+{% block h1_header %}
+Lista de Poemas
+{% endblock h1_header %}
+
+
+{% block h2_header %}
+{{mensaje}}
+{% endblock h2_header %}
+
+
+{% block contenido %}
+<button>
+    <a class="navbar-brand" href={% url 'inicio:crear_poema' %}>Crear</a>
+</button>
+
+<br>
+
+<form action={% url 'inicio:poemas' %}>
+    {{formulario}}
+    <button>Buscar</button>
+</form>
+
+<br>
+
+{% if lista_poemas %}
+{% for poema in lista_poemas %}
+<li>
+    {{poema}}
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:detalle_poema' poema.id %}>Detalle</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:modificar_poema' poema.id %}>Modificar</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:eliminar_poema' poema.id %}>Eliminar</a>
+    </button>
+</li>
+{% endfor %}
+{% else %}
+<p>No se encontraron poemas.</p>
+{% endif %}
+
+{% endblock contenido %}
+
+
+{% block copy %}
+{% endblock copy %}
