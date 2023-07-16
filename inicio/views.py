@@ -5,6 +5,8 @@ from inicio.models import Poema
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -24,7 +26,7 @@ def listar_poemas(request):
     return render(request, 'inicio/poemas.html', {'formulario': formulario, 'lista_poemas': lista_poemas})
 
 
-
+@login_required
 def crear_poema(request):
     
     mensaje = ''
@@ -48,14 +50,15 @@ class DetallePoema(DetailView):
     template_name = "inicio/detalle_poema.html"
 
 
-class ModificarPoema(UpdateView):
+
+class ModificarPoema(LoginRequiredMixin, UpdateView):
     model = Poema
     fields = ['autor', 'titulo', 'fecha_publicacion', 'portada']
     template_name = "inicio/modificar_poema.html"
     success_url = reverse_lazy('inicio:poemas')
 
 
-class EliminarPoema(DeleteView):
+class EliminarPoema(LoginRequiredMixin, DeleteView):
     model = Poema
     template_name = "inicio/eliminar_poema.html"
     success_url = reverse_lazy('inicio:poemas')
