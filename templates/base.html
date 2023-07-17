@@ -55,13 +55,15 @@
                             {% block h2_header %}
                             {% endblock h2_header %}
                         </h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
+                        {% comment %} <a class="btn btn-primary" href="#about">Get Started</a> {% endcomment %}
                     </div>
                 </div>
             </div>
         </header>
+                
         {% block contenido %}
         {% endblock contenido %}
+        
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">
             {% block copy %}

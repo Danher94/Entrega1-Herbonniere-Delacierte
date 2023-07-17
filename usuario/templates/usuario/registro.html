@@ -9,15 +9,16 @@ Registro
 {% endblock h1_header %}
 
 {% block h2_header %}
+    <form action={% url 'usuario:registrarse' %} method="POST">
+        {% csrf_token %}
+        <table>
+            {{formulario}}
+        </table>
+        <br>
+        <button class="btn btn-primary">Registrarse</button>
+    </form>
 {% endblock h2_header %}
 
 {% block contenido %}
 
-<form action={% url 'usuario:registrarse' %} method="POST">
-    {% csrf_token %}
-    <table>
-        {{formulario}}
-    </table>
-    <button>Registrar</button>
-</form>
 {% endblock contenido %}

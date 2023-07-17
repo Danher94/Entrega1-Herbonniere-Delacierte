@@ -1,55 +1,73 @@
 {% extends 'base.html' %}
 
 {% block title_head %}
-<title>Poemas</title>
+    <title>Poemas</title>
 {% endblock title_head %}
 
 
 {% block h1_header %}
-Lista de Poemas
+    Lista de Poemas
 {% endblock h1_header %}
 
 
 {% block h2_header %}
-{{mensaje}}
+
+    <form action={% url 'inicio:poemas' %}>
+        <br>
+        {{formulario}}
+        <button class="btn btn-primary">Buscar</button>
+    </form>
+
+    <br>
+ 
+    <a class="btn btn-secondary" href={% url 'inicio:crear_poema' %}>Crear Poema</a>
+
+
 {% endblock h2_header %}
 
 
+    {% comment %} <button>
+        <a class="navbar-brand" href={% url 'inicio:crear_poema' %}>Crear</a>
+    </button> {% endcomment %}
+
 {% block contenido %}
-<button>
-    <a class="navbar-brand" href={% url 'inicio:crear_poema' %}>Crear</a>
-</button>
 
-<br>
+    {% if lista_poemas %}
 
-<form action={% url 'inicio:poemas' %}>
-    {{formulario}}
-    <button>Buscar</button>
-</form>
+        {% for poema in lista_poemas %}
+            {% comment %} <h4 class="m-0">{{poema}}</h4> {% endcomment %}
+            <section class="contact-section bg-black">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <h4>
+                                        {{poema}}
+                                        <button class="btn btn-info">
+                                            <a class="navbar-brand" href={% url 'inicio:detalle_poema' poema.id %}>Ver más</a>
+                                        </button>
+                                        
+                                        {% if request.user.is_authenticated %}
+                                        <button class="btn btn-success">
+                                            <a class="navbar-brand" href={% url 'inicio:modificar_poema' poema.id %}>Modificar</a>
+                                        </button>
 
-<br>
-
-{% if lista_poemas %}
-{% for poema in lista_poemas %}
-<li>
-    {{poema}}
-    <button>
-        <a class="navbar-brand" href={% url 'inicio:detalle_poema' poema.id %}>Detalle</a>
-    </button>
-    <button>
-        <a class="navbar-brand" href={% url 'inicio:modificar_poema' poema.id %}>Modificar</a>
-    </button>
-    <button>
-        <a class="navbar-brand" href={% url 'inicio:eliminar_poema' poema.id %}>Eliminar</a>
-    </button>
-</li>
-{% endfor %}
-{% else %}
-<p>No se encontraron poemas.</p>
-{% endif %}
+                                        <button class="btn btn-danger">
+                                            <a class="navbar-brand" href={% url 'inicio:eliminar_poema' poema.id %}>Eliminar</a>
+                                        </button>
+                                        {% endif %}
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+        
+    {% else %}
+        <p>No se encontraron poemas.</p>
+    {% endif %}
 
 {% endblock contenido %}
-
-
-{% block copy %}
-{% endblock copy %}

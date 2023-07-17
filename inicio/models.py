@@ -9,4 +9,4 @@ class Poema(models.Model):
     portada = models.ImageField(upload_to='portadas', null=True, blank=True)
     
     def __str__(self):
-        return f'Autor: {self.autor}  |  Titulo: {self.titulo}'
+        return f'Titulo: {self.titulo} | Autor: {self.autor} '
