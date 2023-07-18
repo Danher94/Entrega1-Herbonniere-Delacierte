@@ -25,19 +25,13 @@
 
 {% endblock h2_header %}
 
-
-    {% comment %} <button>
-        <a class="navbar-brand" href={% url 'inicio:crear_poema' %}>Crear</a>
-    </button> {% endcomment %}
-
 {% block contenido %}
 
     {% if lista_poemas %}
 
         {% for poema in lista_poemas %}
-            {% comment %} <h4 class="m-0">{{poema}}</h4> {% endcomment %}
             <section class="contact-section bg-black">
-                <div class="col-md-4 mb-3 mb-md-0">
+                <div class="container px-4 px-lg-5">
                     <div class="card py-4 h-100">
                         <div class="card-body text-center">
                             <ul>
@@ -67,7 +61,15 @@
         {% endfor %}
         
     {% else %}
-        <p>No se encontraron poemas.</p>
+    <section class="about-section text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4">No se encontraron poemas</h2>
+                </div>
+            </div>
+        </div>
+    </section>
     {% endif %}
 
 {% endblock contenido %}

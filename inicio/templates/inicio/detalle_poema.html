@@ -12,11 +12,30 @@
 {% endblock h2_header %}
 
 {% block contenido %}
-<li>Autor: {{poema.autor}}</li>
-<li>Fecha de Publicacion: {{poema.fecha_publicacion}}</li>
-{% if poema.portada %}
-    <li><img src={{poema.portada.url}} alt="" height='200px'></li>
-{% else %}
-    <li>Portada: No tiene</li>
-{% endif %}
+
+    <section class="projects-section bg-light" id="projects">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                <div class="col-lg-6">
+                    {% if poema.portada %}
+                        <li style="list-style-type: none;"><img class="img-fluid"  src={{poema.portada.url}} alt="" height='200px'></li>
+                    {% else %}
+                        <li style="list-style-type: none;">Portada: No tiene</li>
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">{{poema.contenido | safe}}</h4>
+                                <p class="mb-0 text-white-50">{{poema.autor}}</p>
+                                <p class="mb-0 text-white-50">{{poema.fecha_publicacion}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 {% endblock contenido %}

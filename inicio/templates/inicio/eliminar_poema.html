@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title_head %}
-<title>Eliminar Poema</title>
+    <title>Eliminar Poema</title>
 {% endblock title_head %}
 
 {% block h1_header %}
-Eliminar Poema: {{poema.titulo}}
+    {{poema.titulo}}
 {% endblock h1_header %}
 
 {% block h2_header %}
+    <br>
+    ¿Desea eliminar el poema?
+    
+    <form action={% url 'inicio:eliminar_poema' poema.id %} method="post">
+        {% csrf_token %}
+        <br>
+        <button class="btn btn-danger">Confirmar</button>
+    </form>
 {% endblock h2_header %}
 
 {% block contenido %}
-
-<form action={% url 'inicio:eliminar_poema' poema.id %} method="post">
-    {% csrf_token %}
-    <p>
-        Se va a eliminar el poema
-    </p>
-    <button>Confirmar</button>
-</form>
 {% endblock contenido %}
