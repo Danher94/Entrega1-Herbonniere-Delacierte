@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link" href={% url 'inicio:inicio' %}>Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'inicio:poemas' %}>Poemas</a></li>
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href='#'><strong style="color: #F5BD25;">{{request.user.username}}</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href={% url 'usuario:perfil' %}><strong style="color: #F5BD25;">{{request.user.username}}</strong></a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'usuario:logout' %}><strong style="color: #D93641;">Logout</strong></a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href={% url 'usuario:login' %}><strong style="color: #26C5E1">Login</strong></a></li>

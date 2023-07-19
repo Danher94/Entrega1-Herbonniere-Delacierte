@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Perfil</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+    {{request.user.username}}
+{% endblock h1_header %}
+
+{% block h2_header %}
+
+    <li style="list-style-type: none; text-align: left;">Email: {{request.user.email}}</li>
+    <li style="list-style-type: none; text-align: left;">Nombre: {{request.user.first_name}}</li>
+    <li style="list-style-type: none; text-align: left;">Apellido: {{request.user.last_name}}</li>
+    <br>
+    <a href={% url 'usuario:edicion' %} style="text-decoration: none;"><button type='button' class="btn btn-primary">Editar Perfil</button></a>
+
+{% endblock h2_header %}
+
+{% block contenido %}
+
+{% endblock contenido %}

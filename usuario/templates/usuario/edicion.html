@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Editar Perfil</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+{{request.user.username}}
+{% endblock h1_header %}
+
+{% block h2_header %}
+    Editar Perfil
+    <form action={% url 'usuario:edicion' %} method="POST">
+        {% csrf_token %}
+        <br>
+        <table>
+            {{formulario}}
+        </table>
+        <br>
+        <button class="btn btn-warning">Guardar Cambios</button>
+        <a href={% url 'usuario:edicion_pass' %} style="text-decoration: none;"><button type='button' class="btn btn-secondary">Cambiar Contraseña</button></a>
+    </form>
+{% endblock h2_header %}
+
+{% block contenido %}
+
+{% endblock contenido %}
